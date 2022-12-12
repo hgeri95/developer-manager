@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "acdec377-2c5a-4b5a-8485-093d0665ba44",
+		"name": "Developer manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3798825"
+	},
+	"item": [
+		{
+			"name": "Create developer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"First developer\",\r\n    \"age\": 33,\r\n    \"skills\": [\r\n        {\r\n            \"technology\": \"JAVA\",\r\n            \"yearsOfExperience\": 3\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/developer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create developer without skill",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"developerId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Second developer\",\r\n    \"age\": 43,\r\n    \"skills\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/developer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get developers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/developer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get developers by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/developer/{{developerId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer",
+						"{{developerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter developers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectStart\": \"2022-12-20\",\r\n    \"projectFinish\":\"2023-05-01\",\r\n    \"requiredSkills\": [\r\n        {\r\n            \"technology\": \"JAVA\",\r\n            \"yearsOfExperience\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/developer/filter",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer",
+						"filter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update developer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated developer\",\r\n    \"age\": 44,\r\n    \"skills\": [\r\n        {\r\n            \"technology\": \"FLUTTER\",\r\n            \"yearsOfExperience\": 3\r\n        }\r\n\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/developer/{{developerId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer",
+						"{{developerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"First project\",\r\n    \"start\": \"2023-01-11\",\r\n    \"finish\": \"2023-03-11\",\r\n    \"developerIds\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/project",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create project with developer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"projectId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Dev project\",\r\n    \"start\": \"2023-01-11\",\r\n    \"finish\": \"2023-03-11\",\r\n    \"developerIds\": [{{developerId}}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/project",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get projects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/project",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get project by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/project/{{projectId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"project",
+						"{{projectId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update project",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Dev updated project\",\r\n    \"start\": \"2023-01-11\",\r\n    \"finish\": \"2023-03-11\",\r\n    \"developerIds\": [{{developerId}}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/project/{{projectId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"project",
+						"{{projectId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete developer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/developer/{{developerId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer",
+						"{{developerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete project",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/project/{{projectId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"project",
+						"{{projectId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get available technologies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/developer/technology",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"developer",
+						"technology"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

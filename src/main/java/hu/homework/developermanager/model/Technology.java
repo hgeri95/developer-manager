@@ -1,0 +1,26 @@
+package hu.homework.developermanager.model;
+
+public enum Technology {
+	FLUTTER,
+	REACT,
+	NEXTJS,
+	TAILWIND,
+	ANGULAR,
+	VUE,
+	DOCKER,
+	KUBERNETES,
+	HTML,
+	CSS,
+	JAVASCRIPT,
+	TYPESCRIPT,
+	SWIFT,
+	KOTLIN,
+	SWIFTUI,
+	JETPACKCOMPOSE,
+	JAVA,
+	ANDROID,
+	IOS,
+	BUILDERIO,
+	GATSBY,
+	DOTNET
+}
